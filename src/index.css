@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('leaflet/dist/leaflet.css');
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 215 35% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 35% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 35% 12%;
+
+    /* Health teal */
+    --primary: 174 72% 36%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 174 80% 55%;
+
+    --secondary: 210 30% 94%;
+    --secondary-foreground: 215 35% 18%;
+
+    --muted: 210 30% 94%;
+    --muted-foreground: 215 16% 45%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 78% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --warning: 35 95% 55%;
+    --warning-foreground: 0 0% 100%;
+
+    --success: 142 70% 42%;
+    --success-foreground: 0 0% 100%;
+
+    /* Risk scale */
+    --risk-low: 142 70% 42%;
+    --risk-moderate: 48 95% 55%;
+    --risk-high: 25 92% 55%;
+    --risk-critical: 0 78% 55%;
+
+    --border: 215 20% 88%;
+    --input: 215 20% 88%;
+    --ring: 174 72% 36%;
+
+    --radius: 0.75rem;
+
+    --gradient-primary: linear-gradient(135deg, hsl(174 72% 36%), hsl(199 89% 48%));
+    --gradient-hero: linear-gradient(135deg, hsl(215 45% 14%), hsl(174 60% 22%));
+    --gradient-risk: linear-gradient(90deg, hsl(var(--risk-low)), hsl(var(--risk-moderate)), hsl(var(--risk-high)), hsl(var(--risk-critical)));
+
+    --shadow-card: 0 1px 3px hsl(215 35% 12% / 0.06), 0 4px 16px hsl(215 35% 12% / 0.04);
+    --shadow-elevated: 0 8px 32px hsl(174 72% 36% / 0.18);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 215 40% 8%;
+    --foreground: 210 40% 96%;
+    --card: 215 38% 11%;
+    --card-foreground: 210 40% 96%;
+    --popover: 215 38% 11%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 174 72% 46%;
+    --primary-foreground: 215 40% 8%;
+    --secondary: 215 30% 16%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 215 30% 16%;
+    --muted-foreground: 215 16% 65%;
+    --accent: 199 89% 55%;
+    --accent-foreground: 215 40% 8%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 215 25% 20%;
+    --input: 215 25% 20%;
+    --ring: 174 72% 46%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-primary { background-image: var(--gradient-primary); }
+  .bg-gradient-hero { background-image: var(--gradient-hero); }
+  .bg-gradient-risk { background-image: var(--gradient-risk); }
+  .shadow-card { box-shadow: var(--shadow-card); }
+  .shadow-elevated { box-shadow: var(--shadow-elevated); }
+}
+
+/* Leaflet overrides */
+.leaflet-container {
+  background: hsl(var(--muted));
+  font-family: 'Inter', sans-serif;
+  border-radius: var(--radius);
+}
+.leaflet-popup-content-wrapper {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-elevated);
+}
