@@ -4,7 +4,7 @@
 
 import { sampleZones, sampleStats, sampleTrend, sampleFactors } from "./sampleData";
 
-const API_URL = import.meta.env.VITE_API_URL as string | undefined;
+const API_URL = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, "");
 
 export type RiskLevel = "low" | "moderate" | "high" | "critical";
 
@@ -39,9 +39,8 @@ export interface TrendPoint { date: string; risk: number; cases: number; }
 export interface FactorContribution { factor: string; impact: number; }
 
 async function tryFetch<T>(path: string, fallback: T): Promise<T> {
-  if (!API_URL) return fallback;
   try {
-    const res = await fetch(`${API_URL}${path}`);
+    const res = await fetch(API_URL ? `${API_URL}${path}` : path);
     if (!res.ok) throw new Error(`${res.status}`);
     return (await res.json()) as T;
   } catch (e) {
